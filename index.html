@@ -1,75 +1,302 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panda Wash - Laverie au Sénégal</title>
-  <style>
-    body{font-family:Arial,sans-serif;margin:0;padding:0;line-height:1.5;}
-    header{background:#4caf50;color:#fff;text-align:center;padding:20px;}
-    .container{max-width:900px;margin:auto;padding:20px;}
-    h2{color:#4caf50;}
-    .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
-    .service-item{border:1px solid #e0e0e0;padding:15px;border-radius:5px;}
-    .price{font-weight:bold;color:#4caf50;}
-    footer{text-align:center;background:#f4f4f4;padding:10px;margin-top:40px;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panda Wash - Laverie Premium au Sénégal</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* base resets */
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; margin: 0; line-height: 1.6; color: #444; background: #fafafa; }
+a { color: inherit; text-decoration: none; }
+
+/* header hero section */
+header {
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1581579181940-b6e9c9b7fa59?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+header::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0, 0, 0, 0.5);
+}
+header .hero-content {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+}
+header h1 {
+  margin: 0 0 15px;
+  font-size: 2.8em;
+  font-weight: 600;
+}
+header p {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Navigation */
+nav {
+  background: #0A369D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+nav a:hover { text-decoration: underline; }
+
+/* Generic container */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* About Section */
+#about {
+  text-align: center;
+}
+#about h2 {
+  color: #0A369D;
+  margin-bottom: 20px;
+}
+#about p {
+  margin: 0 auto;
+  max-width: 700px;
+  font-size: 1.05em;
+}
+
+/* Services Section */
+#services {
+  background: #fff;
+}
+#services h2 {
+  text-align: center;
+  color: #0A369D;
+  margin-bottom: 30px;
+}
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.service-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 48%;
+  max-width: 260px;
+  margin-bottom: 30px;
+  text-align: center;
+  padding: 25px 15px;
+}
+.service-card h3 {
+  margin-top: 0;
+  color: #0A369D;
+}
+.service-card p {
+  margin-bottom: 10px;
+}
+.service-card .price {
+  font-weight: 600;
+  color: #0A369D;
+}
+
+/* Payment Section */
+#payment {
+  background: #f4f8ff;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+#payment h2 {
+  color: #0A369D;
+  margin-bottom: 20px;
+}
+#payment ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 500px;
+}
+#payment li {
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+/* Contact Section */
+#contact {
+  background: #eaf2ff;
+}
+#contact h2 {
+  text-align: center;
+  color: #0A369D;
+  margin-bottom: 20px;
+}
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.contact-info div {
+  flex: 1;
+  min-width: 250px;
+}
+.contact-info strong {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+form button {
+  background: #0A369D;
+  color: #fff;
+  padding: 12px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 600;
+}
+form button:hover {
+  background: #082e78;
+}
+
+/* Footer */
+footer {
+  background: #0A369D;
+  color: #fff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service-card {
+    width: 90%;
+  }
+  nav {
+    flex-wrap: wrap;
+  }
+}
+</style>
 </head>
 <body>
+
+<nav>
+  <a href="#about">À propos</a>
+  <a href="#services">Services</a>
+  <a href="#payment">Paiement</a>
+  <a href="#contact">Contact</a>
+</nav>
+
 <header>
-  <h1>Panda Wash</h1>
-  <p>Laverie Self-Service et Service Premium au Sénégal</p>
+  <div class="hero-content">
+    <h1>Panda Wash</h1>
+    <p>Laverie premium à Dakar – Machines modernes, service rapide et tarifs en FCFA.</p>
+  </div>
 </header>
-<div class="container">
-  <section>
-    <h2>À propos</h2>
-    <p>Bienvenue chez <strong>Panda Wash</strong>, votre laverie de quartier à Dakar. Nous proposons des machines de dernière génération pour un lavage rapide et économique.</p>
-  </section>
-  <section>
-    <h2>Nos services et tarifs</h2>
-    <div class="service-list">
-      <div class="service-item">
-        <h3>Machine 7 kg</h3>
-        <p>Lavage et séchage.</p>
-        <p class="price">1 500 FCFA</p>
-      </div>
-      <div class="service-item">
-        <h3>Machine 9 kg</h3>
-        <p>Pour charges moyennes.</p>
-        <p class="price">2 000 FCFA</p>
-      </div>
-      <div class="service-item">
-        <h3>Machine 13 kg</h3>
-        <p>Pour couettes et gros volumes.</p>
-        <p class="price">3 000 FCFA</p>
-      </div>
-      <div class="service-item">
-        <h3>Service repassage</h3>
-        <p>À la pièce ou au kilo.</p>
-        <p class="price">à partir de 2 500 FCFA</p>
-      </div>
+
+<section id="about" class="container">
+  <h2>À propos de Panda Wash</h2>
+  <p>Bienvenue chez <strong>Panda Wash</strong>, votre laverie premium située à Dakar, Sénégal. Notre mission est de vous offrir un service de qualité supérieure avec des équipements modernes, une propreté impeccable et un accueil chaleureux. Que ce soit pour votre linge quotidien ou vos articles délicats, nous avons la solution adaptée à vos besoins.</p>
+</section>
+
+<section id="services" class="container">
+  <h2>Nos services et tarifs</h2>
+  <div class="services-list">
+    <div class="service-card">
+      <h3>Machine 7&nbsp;kg</h3>
+      <p>Programme rapide (30&nbsp;min) – Idéal pour petites charges.</p>
+      <p class="price">1&nbsp;500&nbsp;FCFA</p>
     </div>
-  </section>
-  <section>
+    <div class="service-card">
+      <h3>Machine 9&nbsp;kg</h3>
+      <p>Parfait pour les familles – Lavage et essorage inclus.</p>
+      <p class="price">2&nbsp;000&nbsp;FCFA</p>
+    </div>
+    <div class="service-card">
+      <h3>Machine 13&nbsp;kg</h3>
+      <p>Pour les grandes quantités de linge ou couettes.</p>
+      <p class="price">3&nbsp;000&nbsp;FCFA</p>
+    </div>
+    <div class="service-card">
+      <h3>Service repassage</h3>
+      <p>À la pièce ou au kilo – Résultats impeccables.</p>
+      <p class="price">à partir de 2&nbsp;500&nbsp;FCFA</p>
+    </div>
+  </div>
+</section>
+
+<section id="payment">
+  <div class="container">
     <h2>Paiements acceptés</h2>
-    <p>Espèces • Wave • Orange Money • Free Money</p>
-  </section>
-  <section>
-    <h2>Contact</h2>
-    <p><strong>Adresse :</strong> Rue Example, Quartier Sacré-Cœur, Dakar</p>
-    <p><strong>Téléphone :</strong> <a href="tel:+221700000000">+221 70 000 00 00</a></p>
-    <p><strong>Horaires :</strong> Lundi – Dimanche : 7h à 22h</p>
-    <h3>Envoyer un message</h3>
-    <form method="POST" action="#">
-      <input type="text" name="name" placeholder="Votre nom" required><br>
-      <input type="email" name="email" placeholder="Votre email" required><br>
-      <textarea name="message" placeholder="Votre message" rows="4" required></textarea><br>
-      <button type="submit">Envoyer</button>
-    </form>
-  </section>
-</div>
+    <ul>
+      <li>Espèces en FCFA</li>
+      <li>Wave</li>
+      <li>Orange Money</li>
+      <li>Free Money</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contactez-nous</h2>
+  <div class="contact-info">
+    <div>
+      <strong>Adresse&nbsp;:</strong>
+      <span>Rue Exemple, Quartier Sacré-Cœur, Dakar</span>
+    </div>
+    <div>
+      <strong>Téléphone&nbsp;:</strong>
+      <a href="tel:+221700000000">+221 70 000 00 00</a>
+    </div>
+    <div>
+      <strong>Horaires&nbsp;:</strong>
+      <span>Lundi – Dimanche : 7h à 22h</span>
+    </div>
+  </div>
+  <form method="POST" action="#">
+    <input type="text" name="name" placeholder="Votre nom" required>
+    <input type="email" name="email" placeholder="Votre e-mail" required>
+    <textarea name="message" rows="4" placeholder="Votre message" required></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+</section>
+
 <footer>
-  <p>&copy; 2025 Panda Wash — Tous droits réservés.</p>
+  &copy;&nbsp;2025 Panda Wash – Tous droits réservés.
 </footer>
+
 </body>
 </html>
