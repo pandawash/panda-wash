@@ -165,7 +165,7 @@ form {
   max-width: 600px;
   margin: 0 auto;
 }
-form input, form textarea {
+form input, form textarea, form select {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -216,6 +216,7 @@ footer {
 <nav>
   <a href="#about">À propos</a>
   <a href="#services">Services</a>
+  <a href="#reservation">Réservation</a>
   <a href="#payment">Paiement</a>
   <a href="#contact">Contact</a>
 </nav>
@@ -231,6 +232,7 @@ footer {
   <h2>À propos de Panda Wash</h2>
   <p>Bienvenue chez <strong>Panda Wash</strong>, votre laverie premium située à Dakar, Sénégal. Notre mission est de vous offrir un service de qualité supérieure avec des équipements modernes, une propreté impeccable et un accueil chaleureux. Que ce soit pour votre linge quotidien ou vos articles délicats, nous avons la solution adaptée à vos besoins.</p>
 </section>
+
 
 <section id="services" class="container">
   <h2>Nos services et tarifs</h2>
@@ -256,6 +258,26 @@ footer {
       <p class="price">à partir de 2&nbsp;500&nbsp;FCFA</p>
     </div>
   </div>
+</section>
+
+<section id="reservation" class="container">
+  <h2>Réservez votre machine</h2>
+  <form method="POST" action="#">
+    <input type="text" name="name" placeholder="Votre nom" required>
+    <input type="email" name="email" placeholder="Votre e-mail" required>
+    <input type="tel" name="phone" placeholder="Votre téléphone" required>
+    <select name="machine" required>
+      <option value="" disabled selected>Type de machine</option>
+      <option value="7kg">Machine 7&nbsp;kg</option>
+      <option value="9kg">Machine 9&nbsp;kg</option>
+      <option value="13kg">Machine 13&nbsp;kg</option>
+      <option value="repassage">Service repassage</option>
+    </select>
+    <input type="date" name="date" required>
+    <input type="time" name="time" required>
+    <textarea name="instructions" rows="4" placeholder="Instructions supplémentaires (facultatif)"></textarea>
+    <button type="submit">Réserver</button>
+  </form>
 </section>
 
 <section id="payment">
