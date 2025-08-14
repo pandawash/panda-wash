@@ -212,9 +212,23 @@ form button:hover {
 .option input {
   display: none;
 }
+/* Afficher les champs numériques pour la quantité de repassage */
+.option input[type="number"] {
+  display: inline-block;
+}
+}
 .option.selected {
   border-color: #0A369D;
   background: #f4f8ff;
+}
+# Styles pour organiser les groupes d'options dans la réservation
+.options-group {
+  margin-bottom: 20px;
+}
+.options-group h4 {
+  margin-bottom: 10px;
+  color: #0A369D;
+  font-size: 1em;
 }
 #summary {
   margin-top: 20px;
@@ -317,89 +331,85 @@ footer {
       </div>
     </div>
     <div class="step">
-      <h3>Type de machine</h3>
-      <div class="options">
-        <label class="option">
-          <input type="radio" name="machine" value="7kg" data-price="1500" data-label="Machine 7 kg" required>
-          <span class="emoji">🧺</span>
-          <span class="label">Machine 7&nbsp;kg – 1&nbsp;500&nbsp;FCFA</span>
-        </label>
-        <label class="option">
-          <input type="radio" name="machine" value="9kg" data-price="2000" data-label="Machine 9 kg" required>
-          <span class="emoji">🧺</span>
-          <span class="label">Machine 9&nbsp;kg – 2&nbsp;000&nbsp;FCFA</span>
-        </label>
-        <label class="option">
-          <input type="radio" name="machine" value="13kg" data-price="3000" data-label="Machine 13 kg" required>
-          <span class="emoji">🧺</span>
-          <span class="label">Machine 13&nbsp;kg – 3&nbsp;000&nbsp;FCFA</span>
-        </label>
-        <label class="option">
-          <input type="radio" name="machine" value="repassage" data-price="2500" data-label="Service repassage" required>
-          <span class="emoji">🧺</span>
-          <span class="label">Service repassage – 2&nbsp;500&nbsp;FCFA</span>
-        </label>
+      <h3>Type de machine et services</h3>
+      <!-- Groupe des machines -->
+      <div class="options-group">
+        <h4>Type de machine</h4>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="machine" value="7kg" data-price="1500" data-label="Machine 7 kg" required>
+            <span class="emoji">🧺</span>
+            <span class="label">Machine 7&nbsp;kg – 1&nbsp;500&nbsp;FCFA</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="machine" value="9kg" data-price="2000" data-label="Machine 9 kg" required>
+            <span class="emoji">🧺</span>
+            <span class="label">Machine 9&nbsp;kg – 2&nbsp;000&nbsp;FCFA</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="machine" value="13kg" data-price="3000" data-label="Machine 13 kg" required>
+            <span class="emoji">🧺</span>
+            <span class="label">Machine 13&nbsp;kg – 3&nbsp;000&nbsp;FCFA</span>
+          </label>
+        </div>
+      </div>
+      <!-- Groupe du séchage -->
+      <div class="options-group">
+        <h4>Séchage</h4>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="drying" value="30min" data-price="2500" data-label="Séchage 30 min">
+            <span class="emoji">💨</span>
+            <span class="label">30&nbsp;min – 2&nbsp;500&nbsp;FCFA</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="drying" value="15min" data-price="1500" data-label="Séchage 15 min">
+            <span class="emoji">💨</span>
+            <span class="label">15&nbsp;min – 1&nbsp;500&nbsp;FCFA</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="drying" value="none" data-price="0" data-label="Sans séchage" checked>
+            <span class="emoji">🚫</span>
+            <span class="label">Sans séchage – 0&nbsp;FCFA</span>
+          </label>
+        </div>
+      </div>
+      <!-- Groupe du repassage -->
+      <div class="options-group">
+        <h4>Repassage</h4>
+        <div class="options">
+          <label class="option" style="align-items:center;">
+            <input type="checkbox" id="ironingCheck" name="ironing" value="yes" data-label="Repassage">
+            <span class="emoji">🧺</span>
+            <span class="label">Repassage – 100&nbsp;FCFA/vêtement</span>
+            <!-- Champ pour saisir la quantité de vêtements -->
+            <input type="number" id="ironingQty" name="ironing_qty" min="1" value="1" disabled style="margin-left:10px;width:70px;">
+          </label>
+        </div>
       </div>
       <div class="step-buttons">
         <button type="button" id="prevBtn2">Précédent</button>
         <button type="button" id="nextBtn2">Suivant</button>
       </div>
     </div>
+    <!-- La page de séchage et repassage a été supprimée : ces options sont désormais intégrées à l'étape précédente -->
     <div class="step">
-      <h3>Séchage</h3>
+      <h3>Collecte&nbsp;&amp;&nbsp;livraison</h3>
       <div class="options">
         <label class="option">
-          <input type="radio" name="drying" value="yes" data-price="500" data-label="Avec séchage" required>
-          <span class="emoji">💨</span>
-          <span class="label">Avec séchage – 500&nbsp;FCFA</span>
+        <input type="radio" name="delivery" value="yes" data-price="2500" data-label="Collecte + livraison" required>
+          <span class="emoji">🚚</span>
+          <span class="label">Collecte + livraison – 2&nbsp;500&nbsp;FCFA</span>
         </label>
         <label class="option">
-          <input type="radio" name="drying" value="no" data-price="0" data-label="Sans séchage" required>
+        <input type="radio" name="delivery" value="no" data-price="0" data-label="Sans collecte/livraison" required>
           <span class="emoji">🚫</span>
-          <span class="label">Sans séchage – 0&nbsp;FCFA</span>
+          <span class="label">Sans collecte/livraison – 0&nbsp;FCFA</span>
         </label>
       </div>
       <div class="step-buttons">
         <button type="button" id="prevBtn3">Précédent</button>
         <button type="button" id="nextBtn3">Suivant</button>
-      </div>
-    </div>
-    <div class="step">
-      <h3>Repassage</h3>
-      <div class="options">
-        <label class="option">
-          <input type="radio" name="ironing" value="yes" data-price="500" data-label="Avec repassage" required>
-          <span class="emoji">🧺</span>
-          <span class="label">Avec repassage – 500&nbsp;FCFA</span>
-        </label>
-        <label class="option">
-          <input type="radio" name="ironing" value="no" data-price="0" data-label="Sans repassage" required>
-          <span class="emoji">🚫</span>
-          <span class="label">Sans repassage – 0&nbsp;FCFA</span>
-        </label>
-      </div>
-      <div class="step-buttons">
-        <button type="button" id="prevBtn4">Précédent</button>
-        <button type="button" id="nextBtn4">Suivant</button>
-      </div>
-    </div>
-    <div class="step">
-      <h3>Livraison</h3>
-      <div class="options">
-        <label class="option">
-          <input type="radio" name="delivery" value="yes" data-price="1000" data-label="Avec livraison" required>
-          <span class="emoji">🚚</span>
-          <span class="label">Avec livraison – 1&nbsp;000&nbsp;FCFA</span>
-        </label>
-        <label class="option">
-          <input type="radio" name="delivery" value="no" data-price="0" data-label="Sans livraison" required>
-          <span class="emoji">🚫</span>
-          <span class="label">Sans livraison – 0&nbsp;FCFA</span>
-        </label>
-      </div>
-      <div class="step-buttons">
-        <button type="button" id="prevBtn5">Précédent</button>
-        <button type="button" id="nextBtn5">Suivant</button>
       </div>
     </div>
     <div class="step">
@@ -431,7 +441,7 @@ footer {
         <p>Total&nbsp;: <span id="totalPrice">0&nbsp;FCFA</span></p>
       </div>
       <div class="step-buttons">
-        <button type="button" id="prevBtn6">Précédent</button>
+        <button type="button" id="prevBtn4">Précédent</button>
         <button type="submit">Confirmer la réservation</button>
       </div>
     </div>
@@ -525,7 +535,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateSummary() {
     let total = 0;
     const selections = [];
-    ['machine','drying','ironing','delivery','payment'].forEach(function(fieldName) {
+    // Machine type, séchage, livraison et mode de paiement
+    ['machine','drying','delivery','payment'].forEach(function(fieldName) {
       const selected = document.querySelector('input[name="' + fieldName + '"]:checked');
       if (selected) {
         if (selected.dataset.price) {
@@ -536,6 +547,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     });
+    // Gestion du repassage : prix calculé en fonction de la quantité
+    const ironingCheck = document.getElementById('ironingCheck');
+    const ironingQty = document.getElementById('ironingQty');
+    if (ironingCheck && ironingCheck.checked) {
+      const qty = parseInt(ironingQty.value) || 1;
+      const pricePerItem = 100;
+      total += qty * pricePerItem;
+      selections.push('Repassage x ' + qty);
+    }
     const totalElem = document.getElementById('totalPrice');
     if (totalElem) {
       totalElem.textContent = total.toLocaleString('fr-FR') + ' FCFA';
@@ -557,16 +577,33 @@ document.addEventListener('DOMContentLoaded', function() {
       updateSummary();
     });
   });
+  // Mettre à jour la sélection lorsque des cases à cocher ou la quantité de repassage changent
+  const ironingCheckElem = document.getElementById('ironingCheck');
+  const ironingQtyElem = document.getElementById('ironingQty');
+  if (ironingCheckElem) {
+    ironingCheckElem.addEventListener('change', function() {
+      // activer ou désactiver le champ de quantité
+      if (ironingCheckElem.checked) {
+        ironingQtyElem.disabled = false;
+        // mettre en surbrillance l'option sélectionnée
+        ironingCheckElem.parentElement.classList.add('selected');
+      } else {
+        ironingQtyElem.disabled = true;
+        ironingCheckElem.parentElement.classList.remove('selected');
+      }
+      updateSummary();
+    });
+  }
+  if (ironingQtyElem) {
+    ironingQtyElem.addEventListener('input', updateSummary);
+  }
   document.getElementById('nextBtn1').addEventListener('click', nextStep);
   document.getElementById('prevBtn2').addEventListener('click', prevStep);
   document.getElementById('nextBtn2').addEventListener('click', nextStep);
   document.getElementById('prevBtn3').addEventListener('click', prevStep);
   document.getElementById('nextBtn3').addEventListener('click', nextStep);
+  // Bouton précédent pour l’étape de paiement
   document.getElementById('prevBtn4').addEventListener('click', prevStep);
-  document.getElementById('nextBtn4').addEventListener('click', nextStep);
-  document.getElementById('prevBtn5').addEventListener('click', prevStep);
-  document.getElementById('nextBtn5').addEventListener('click', nextStep);
-  document.getElementById('prevBtn6').addEventListener('click', prevStep);
   showStep(0);
 });
 </script>
