@@ -187,6 +187,50 @@ form button:hover {
   background: #082e78;
 }
 
+/* Reservation multi-step form */
+.step { display: none; }
+.step.active { display: block; }
+.step h3 { margin-top: 0; color: #0A369D; }
+.options { display: flex; flex-wrap: wrap; gap: 10px; }
+.option {
+  flex: 1 1 45%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+}
+.option .emoji {
+  font-size: 1.8em;
+  margin-right: 10px;
+}
+.option .label {
+  flex: 1;
+}
+.option input {
+  display: none;
+}
+.option.selected {
+  border-color: #0A369D;
+  background: #f4f8ff;
+}
+#summary {
+  margin-top: 20px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #0A369D;
+}
+.step-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.step-buttons button {
+  flex: 0 0 auto;
+}
+
 /* Footer */
 footer {
   background: #0A369D;
@@ -262,21 +306,135 @@ footer {
 
 <section id="reservation" class="container">
   <h2>Réservez votre machine</h2>
-  <form method="POST" action="#">
-    <input type="text" name="name" placeholder="Votre nom" required>
-    <input type="email" name="email" placeholder="Votre e-mail" required>
-    <input type="tel" name="phone" placeholder="Votre téléphone" required>
-    <select name="machine" required>
-      <option value="" disabled selected>Type de machine</option>
-      <option value="7kg">Machine 7&nbsp;kg</option>
-      <option value="9kg">Machine 9&nbsp;kg</option>
-      <option value="13kg">Machine 13&nbsp;kg</option>
-      <option value="repassage">Service repassage</option>
-    </select>
-    <input type="date" name="date" required>
-    <input type="time" name="time" required>
-    <textarea name="instructions" rows="4" placeholder="Instructions supplémentaires (facultatif)"></textarea>
-    <button type="submit">Réserver</button>
+  <form id="bookingForm" method="POST" action="#">
+    <div class="step active">
+      <h3>Informations personnelles</h3>
+      <input type="text" name="prenom" placeholder="Prénom" required>
+      <input type="text" name="nom" placeholder="Nom" required>
+      <input type="tel" name="telephone" placeholder="Numéro de téléphone" required>
+      <div class="step-buttons">
+        <button type="button" id="nextBtn1">Suivant</button>
+      </div>
+    </div>
+    <div class="step">
+      <h3>Type de machine</h3>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="machine" value="7kg" data-price="1500" data-label="Machine 7 kg" required>
+          <span class="emoji">🧺</span>
+          <span class="label">Machine 7&nbsp;kg – 1&nbsp;500&nbsp;FCFA</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="machine" value="9kg" data-price="2000" data-label="Machine 9 kg" required>
+          <span class="emoji">🧺</span>
+          <span class="label">Machine 9&nbsp;kg – 2&nbsp;000&nbsp;FCFA</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="machine" value="13kg" data-price="3000" data-label="Machine 13 kg" required>
+          <span class="emoji">🧺</span>
+          <span class="label">Machine 13&nbsp;kg – 3&nbsp;000&nbsp;FCFA</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="machine" value="repassage" data-price="2500" data-label="Service repassage" required>
+          <span class="emoji">🧺</span>
+          <span class="label">Service repassage – 2&nbsp;500&nbsp;FCFA</span>
+        </label>
+      </div>
+      <div class="step-buttons">
+        <button type="button" id="prevBtn2">Précédent</button>
+        <button type="button" id="nextBtn2">Suivant</button>
+      </div>
+    </div>
+    <div class="step">
+      <h3>Séchage</h3>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="drying" value="yes" data-price="500" data-label="Avec séchage" required>
+          <span class="emoji">💨</span>
+          <span class="label">Avec séchage – 500&nbsp;FCFA</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="drying" value="no" data-price="0" data-label="Sans séchage" required>
+          <span class="emoji">🚫</span>
+          <span class="label">Sans séchage – 0&nbsp;FCFA</span>
+        </label>
+      </div>
+      <div class="step-buttons">
+        <button type="button" id="prevBtn3">Précédent</button>
+        <button type="button" id="nextBtn3">Suivant</button>
+      </div>
+    </div>
+    <div class="step">
+      <h3>Repassage</h3>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="ironing" value="yes" data-price="500" data-label="Avec repassage" required>
+          <span class="emoji">🧺</span>
+          <span class="label">Avec repassage – 500&nbsp;FCFA</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="ironing" value="no" data-price="0" data-label="Sans repassage" required>
+          <span class="emoji">🚫</span>
+          <span class="label">Sans repassage – 0&nbsp;FCFA</span>
+        </label>
+      </div>
+      <div class="step-buttons">
+        <button type="button" id="prevBtn4">Précédent</button>
+        <button type="button" id="nextBtn4">Suivant</button>
+      </div>
+    </div>
+    <div class="step">
+      <h3>Livraison</h3>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="delivery" value="yes" data-price="1000" data-label="Avec livraison" required>
+          <span class="emoji">🚚</span>
+          <span class="label">Avec livraison – 1&nbsp;000&nbsp;FCFA</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="delivery" value="no" data-price="0" data-label="Sans livraison" required>
+          <span class="emoji">🚫</span>
+          <span class="label">Sans livraison – 0&nbsp;FCFA</span>
+        </label>
+      </div>
+      <div class="step-buttons">
+        <button type="button" id="prevBtn5">Précédent</button>
+        <button type="button" id="nextBtn5">Suivant</button>
+      </div>
+    </div>
+    <div class="step">
+      <h3>Mode de paiement</h3>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="payment" value="cash" data-price="0" data-label="Espèces" required>
+          <span class="emoji">💵</span>
+          <span class="label">Espèces</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="payment" value="wave" data-price="0" data-label="Wave" required>
+          <span class="emoji">📱</span>
+          <span class="label">Wave</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="payment" value="orange" data-price="0" data-label="Orange Money" required>
+          <span class="emoji">📱</span>
+          <span class="label">Orange Money</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="payment" value="free" data-price="0" data-label="Free Money" required>
+          <span class="emoji">📱</span>
+          <span class="label">Free Money</span>
+        </label>
+      </div>
+      <div id="summary">
+        <p>Résumé&nbsp;: <span id="summaryDetails"></span></p>
+        <p>Total&nbsp;: <span id="totalPrice">0&nbsp;FCFA</span></p>
+      </div>
+      <div class="step-buttons">
+        <button type="button" id="prevBtn6">Précédent</button>
+        <button type="submit">Confirmer la réservation</button>
+      </div>
+    </div>
   </form>
 </section>
 
@@ -297,7 +455,7 @@ footer {
   <div class="contact-info">
     <div>
       <strong>Adresse&nbsp;:</strong>
-      <span>Rue Exemple, Quartier Sacré-Cœur, Dakar</span>
+      <span>Quartier Ouakam, Dakar</span>
     </div>
     <div>
       <strong>Téléphone&nbsp;:</strong>
@@ -320,5 +478,97 @@ footer {
   &copy;&nbsp;2025 Panda Wash – Tous droits réservés.
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const steps = document.querySelectorAll('#bookingForm .step');
+  let currentStep = 0;
+  function showStep(i) {
+    steps.forEach((step, idx) => {
+      if (idx === i) {
+        step.classList.add('active');
+      } else {
+        step.classList.remove('active');
+      }
+    });
+    updateSummary();
+  }
+  function nextStep() {
+    if (!validateStep()) return;
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+  function prevStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+  function validateStep() {
+    const currentFields = steps[currentStep].querySelectorAll('input[required]');
+    for (const field of currentFields) {
+      if (field.type === 'radio') {
+        const name = field.name;
+        const checked = steps[currentStep].querySelector('input[name="' + name + '"]:checked');
+        if (!checked) {
+          return false;
+        }
+      } else {
+        if (!field.value.trim()) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  function updateSummary() {
+    let total = 0;
+    const selections = [];
+    ['machine','drying','ironing','delivery','payment'].forEach(function(fieldName) {
+      const selected = document.querySelector('input[name="' + fieldName + '"]:checked');
+      if (selected) {
+        if (selected.dataset.price) {
+          total += parseInt(selected.dataset.price);
+        }
+        if (selected.dataset.label) {
+          selections.push(selected.dataset.label);
+        }
+      }
+    });
+    const totalElem = document.getElementById('totalPrice');
+    if (totalElem) {
+      totalElem.textContent = total.toLocaleString('fr-FR') + ' FCFA';
+    }
+    const summaryElem = document.getElementById('summaryDetails');
+    if (summaryElem) {
+      summaryElem.textContent = selections.join(' · ');
+    }
+  }
+  document.querySelectorAll('input[type="radio"]').forEach(function(input) {
+    input.addEventListener('change', function() {
+      const options = input.closest('.options').querySelectorAll('.option');
+      options.forEach(function(opt) {
+        opt.classList.remove('selected');
+      });
+      if (input.checked) {
+        input.parentElement.classList.add('selected');
+      }
+      updateSummary();
+    });
+  });
+  document.getElementById('nextBtn1').addEventListener('click', nextStep);
+  document.getElementById('prevBtn2').addEventListener('click', prevStep);
+  document.getElementById('nextBtn2').addEventListener('click', nextStep);
+  document.getElementById('prevBtn3').addEventListener('click', prevStep);
+  document.getElementById('nextBtn3').addEventListener('click', nextStep);
+  document.getElementById('prevBtn4').addEventListener('click', prevStep);
+  document.getElementById('nextBtn4').addEventListener('click', nextStep);
+  document.getElementById('prevBtn5').addEventListener('click', prevStep);
+  document.getElementById('nextBtn5').addEventListener('click', nextStep);
+  document.getElementById('prevBtn6').addEventListener('click', prevStep);
+  showStep(0);
+});
+</script>
 </body>
 </html>
